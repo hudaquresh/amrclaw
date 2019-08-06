@@ -45,7 +45,7 @@ subroutine valout(level_begin, level_end, time, num_eqn, num_aux)
     integer :: clock_start, clock_finish, clock_rate
     integer    tick_clock_finish, tick_clock_rate, timeTick_int
     real(kind=8) :: cpu_start, cpu_finish, t_CPU_overall, timeTick_overall
-    character(len=256) :: timing_line, timing_substr
+    character(len=512) :: timing_line, timing_substr
     character(len=*), parameter :: timing_file_name = "timing.csv"
 
     character(len=*), parameter :: header_format_2d =                          &
@@ -338,7 +338,8 @@ subroutine valout(level_begin, level_end, time, num_eqn, num_aux)
     ! ==========================================================================
     ! Write out timing stats
     open(unit=out_unit, file=timing_file_name, form='formatted',         &
-             status='old', action='write', position='append')
+             status='unknown', action='write', position='append')
+             !status='old', action='write', position='append')
     
     timing_line = "(e16.6, ', ', e16.6, ', ', e16.6,"
     do level=1, mxnest
